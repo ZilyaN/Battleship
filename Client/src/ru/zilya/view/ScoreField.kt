@@ -1,44 +1,42 @@
 package ru.zilya.view
 
-import ru.zilya.logic.ShipStates
+
 import java.awt.Color
 import java.awt.Graphics
 import javax.swing.JPanel
 
 
 class ScoreField(private val model: GameModel) : JPanel(), ISubscriber {
-    private var ships = 0
     override fun paintComponent(g: Graphics) {
         super.paintComponent(g)
-        val m = IntArray(4)
+        val numShip = model.playerFieldOpponent.getMaxShip()
+        val m = IntArray(numShip)
         for (i in 0..-1) {
             m[i] = 0
         }
-        ships = 0
-        for (ship in model.playerFiledB.ships!!) {
-            if (ship.state !== ShipStates.enKilled) {
-                m[ship.size - 1]++
-                ships++
+        for (ship in model.playerFieldOpponent.getShips()!!) {
+            if (ship.getState() != Ship.SHIP_KILLED) {
+                m[ship.getSize()!! - 1]++
             }
         }
-        for (i in 0..3) {
+        for (i in 0 until numShip) {
             for (j in 0 until i + 1) {
                 g.color = Color.gray
-                g.fillRect(j * 15 + 10, i * 15 + 5, 13, 13)
+                g.fillRect(j * 10 + 8, i * 10 + 5, 8, 8)
             }
             g.color = Color.black
-            g.drawString(m[i].toString(), 75, i * 15 + 16)
+            g.drawString(m[i].toString(), 78, i * 10 + 12)
         }
-        val st = "Alive: $ships"
-        g.drawString(st, 25, 100)
+        val so = model.playerFieldOpponent.getNumLiveShips()
+        val sp = model.playerFieldPlayer.getNumLiveShips()
+        g.drawString("My alive: $sp", 15, 100)
+        g.drawString("Op alive: $so", 15, 120)
+        if (sp == 0) g.drawString("YOU LOSER!", 20, 140)
+        if (so == 0) g.drawString("YOU WON!", 20, 140)
     }
 
     override fun update() {
         this.repaint()
-    }
-
-    companion object {
-        private const val serialVersionUID = 1L
     }
 
 }
