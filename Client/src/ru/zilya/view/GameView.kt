@@ -8,6 +8,9 @@ import javax.swing.JFrame
 import javax.swing.JMenu
 import javax.swing.JMenuBar
 import javax.swing.JMenuItem
+import javax.swing.UIManager
+
+
 
 
 class GameView(private val model: GameModel) : JFrame() {
@@ -25,8 +28,8 @@ class GameView(private val model: GameModel) : JFrame() {
 
     init {
         buildUI()
-        model.register(panelPlayerPlayer)
-        model.register(panelPlayerOpponent)
+        model.register(panelPlayerPlayer!!)
+        model.register(panelPlayerOpponent!!)
         model.register(panelScore!!)
         controller = GameController(this, model)
         attachController()
@@ -53,7 +56,7 @@ class GameView(private val model: GameModel) : JFrame() {
         mntm10!!.addActionListener(controller)
         mntm15!!.addActionListener(controller)
         mntm20!!.addActionListener(controller)
-        panelPlayerOpponent.addMouseListener(object : MouseAdapter() {
+        panelPlayerOpponent?.addMouseListener(object : MouseAdapter() {
             override fun mousePressed(arg0: MouseEvent) {
                 controller.mousePressed(arg0)
             }
@@ -72,10 +75,10 @@ class GameView(private val model: GameModel) : JFrame() {
         defaultCloseOperation = EXIT_ON_CLOSE
         this.contentPane.layout = null
         panelPlayerPlayer = PanelFieldPlayer(model.playerFieldPlayer)
-        panelPlayerPlayer.setBounds(20, 31, 151, 151)
+        panelPlayerPlayer?.setBounds(20, 31, 151, 151)
         this.contentPane.add(panelPlayerPlayer)
         panelPlayerOpponent = PanelFieldOpponent(model.playerFieldOpponent)
-        panelPlayerOpponent.setBounds(190, 31, 151, 151)
+        panelPlayerOpponent?.setBounds(190, 31, 151, 151)
         this.contentPane.add(panelPlayerOpponent)
         panelScore = ScoreField(model)
         panelScore!!.setBounds(370, 31, 90, 151)
@@ -106,4 +109,17 @@ class GameView(private val model: GameModel) : JFrame() {
         mnHelp.add(mntmAbout)
     }
 
+}
+
+
+fun main(args: Array<String>) {
+    try {
+        UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel")
+    } catch (e: Throwable) {
+        e.printStackTrace()
+    }
+
+    val model = GameModel(15, 15, 6)
+    val view = GameView(model)
+    view.isVisible = true
 }
