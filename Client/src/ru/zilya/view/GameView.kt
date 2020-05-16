@@ -67,25 +67,25 @@ class GameView(private val model: GameModel) : JFrame() {
      * построение интерфейса пользователя
      */
     private fun buildUI() {
-        title = "SeaBattle"
+        title = "Battleship"
         this.isResizable = false
-        this.setBounds(400, 300, 483, 228)
+        this.setBounds(770, 570, 871, 380)
         val screenSize = Toolkit.getDefaultToolkit().screenSize
         this.setLocation((screenSize.width - width) / 2, (screenSize.height - height) / 2)
         defaultCloseOperation = EXIT_ON_CLOSE
         this.contentPane.layout = null
         panelPlayerPlayer = PanelFieldPlayer(model.playerFieldPlayer)
-        panelPlayerPlayer?.setBounds(20, 31, 151, 151)
+        panelPlayerPlayer?.setBounds(20, 30, 301, 301)
         this.contentPane.add(panelPlayerPlayer)
         panelPlayerOpponent = PanelFieldOpponent(model.playerFieldOpponent)
-        panelPlayerOpponent?.setBounds(190, 31, 151, 151)
+        panelPlayerOpponent?.setBounds(340, 30, 301, 301)
         this.contentPane.add(panelPlayerOpponent)
         panelScore = ScoreField(model)
-        panelScore!!.setBounds(370, 31, 90, 151)
+        panelScore!!.setBounds(660, 30, 176, 301)
         panelScore!!.background = Color(225, 225, 255)
         this.contentPane.add(panelScore)
         val menuBar = JMenuBar()
-        menuBar.setBounds(0, 0, 477, 21)
+        menuBar.setBounds(0, 0, 954, 25)
         this.contentPane.add(menuBar)
         val mnGame = JMenu("Game")
         menuBar.add(mnGame)

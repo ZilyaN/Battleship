@@ -1,7 +1,9 @@
 package ru.zilya.view
 
 
+import Ship
 import java.awt.Color
+import java.awt.Font
 import java.awt.Graphics
 import javax.swing.JPanel
 
@@ -19,24 +21,27 @@ class ScoreField(private val model: GameModel) : JPanel(), ISubscriber {
                 m[ship.getSize()!! - 1]++
             }
         }
+
+        g.font = Font("NewRoman", Font.PLAIN, 15)
         for (i in 0 until numShip) {
             for (j in 0 until i + 1) {
                 g.color = Color.gray
-                g.fillRect(j * 10 + 8, i * 10 + 5, 8, 8)
+                g.fillRect(j * 20 + 16, i * 20 + 10, 16, 16)
             }
             g.color = Color.black
-            g.drawString(m[i].toString(), 78, i * 10 + 12)
+            g.drawString(m[i].toString(), 156, i * 20 + 24)
         }
         val so = model.playerFieldOpponent.getNumLiveShips()
         val sp = model.playerFieldPlayer.getNumLiveShips()
-        g.drawString("My alive: $sp", 15, 100)
-        g.drawString("Op alive: $so", 15, 120)
-        if (sp == 0) g.drawString("YOU LOSER!", 20, 140)
-        if (so == 0) g.drawString("YOU WON!", 20, 140)
+        g.drawString("My ships: $sp", 15, 170)
+        g.drawString("Op ships: $so", 15, 190)
+        g.font = Font("NewRoman", Font.PLAIN, 30)
+        g.color = Color.RED
+        if (sp == 0) g.drawString("YOU LOSE!", 15, 240)
+        if (so == 0) g.drawString("YOU WON!", 40, 240)
     }
 
     override fun update() {
         this.repaint()
     }
-
 }
