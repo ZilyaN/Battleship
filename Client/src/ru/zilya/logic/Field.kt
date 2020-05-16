@@ -40,7 +40,7 @@ class Field(x: Int, y: Int, ship: Int) {
         setNumLiveShips(0)
         // заполняем поле элементами воды
         // заполняем поле элементами воды
-        cells = Array(getWidth()) { arrayOfNulls(getHeight()) }
+        cells = Array(getWidth()) { arrayOfNulls<Cell?>(getHeight()) }
         for (j in 0 until getHeight()) {
             for (i in 0 until getWidth()) {
                 //TODO возможно не правильно каждый раз создавать

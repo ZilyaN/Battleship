@@ -4,8 +4,9 @@ import ru.zilya.logic.*
 import java.awt.Color
 
 
-class PanelFieldOpponent(field: Field?){
-    fun getColorByStateElement(state: Int): Color {
+class PanelFieldOpponent(field: Field): PanelField(field){
+
+    override fun getColorByStateElement(state: Int): Color {
         when (state) {
             Cell.CELL_BORDER -> return Color(225, 225, 255)
             Cell.CELL_WATER -> return Color(225, 225, 255)
