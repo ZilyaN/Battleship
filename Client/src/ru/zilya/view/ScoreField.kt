@@ -20,9 +20,9 @@ class ScoreField(private val model: GameModel) : JPanel(),
         for (ship in model.playerFieldOpponent.getShips()!!) {
             if (ship.getState() != Ship.SHIP_KILLED ) {
                 m[ship.getSize()!! - 1]++
-                if(ship.getState() == Ship.SHIP_INJURED ){
-                    m[ship.getSize()!! - 1]--
-                }
+//                if(ship.getState() == Ship.SHIP_INJURED ){
+//                    m[ship.getSize()!! - 1]--
+//                }
             }
         }
 

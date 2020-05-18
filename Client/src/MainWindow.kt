@@ -7,7 +7,6 @@ import javax.swing.JFrame
 import javax.swing.JMenu
 import javax.swing.JMenuBar
 import javax.swing.JMenuItem
-import javax.swing.UIManager
 import ru.zilya.networking.Client
 import ru.zilya.view.GameModel.Companion.gm
 
@@ -40,7 +39,7 @@ class GameView(private val model: GameModel) : JFrame() {
     fun update() {
         panelPlayerPlayer?.repaint()
         panelPlayerOpponent?.repaint()
-        panelScore!!.repaint()
+        panelScore?.repaint()
         println("view update")
     }
 
@@ -110,6 +109,7 @@ class GameView(private val model: GameModel) : JFrame() {
 
 fun main() {
     val model = GameModel(15, 15, 6)
+
     //val view = GameView(model)
     val view = GameView(gm)
     view.isVisible = true
