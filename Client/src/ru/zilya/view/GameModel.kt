@@ -93,7 +93,7 @@ class GameModel(dx: Int, dy: Int, numShip: Int) {
 
     ///////////////////////////////////////////////////////////////////////
 
-    //var clickRole: Int = Cell.CELL_NONE
+    var clickRole: Int = -1
 
     var clickable: Boolean = false
 

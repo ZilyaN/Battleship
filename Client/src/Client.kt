@@ -29,21 +29,20 @@ class Client {
         val vls = data.split("=", limit=2)
         if (vls.size == 2){
             when (vls[0]){
-//                "status" -> acceptStatus(vls[1])
-//                "pos" -> acceptPosition(vls[1])
+                "status" -> acceptStatus(vls[1])
+                "pos" -> acceptPosition(vls[1])
             }
         }
     }
 
     private fun acceptStatus(v: String){
         if (v=="true"){
-            //gameModel.clickRole =
-            //gameModel.clickable = true
-        } else {
-           // gameData.clickRole = Status.O
-           // gameModel.clickable = false
+            //gameModel.clickRole = 1
+            gameModel.clickable = true
+        } //else {
+            //gameModel.clickRole = 0
+            //gameModel.clickable = false
         }
-    }
 
     private fun acceptPosition(pos: String){
         val rc = pos.split(";", limit = 2).map {
