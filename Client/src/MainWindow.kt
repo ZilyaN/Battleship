@@ -1,5 +1,4 @@
-package ru.zilya.view
-
+import ru.zilya.view.*
 import java.awt.Color
 import java.awt.Toolkit
 import java.awt.event.MouseAdapter
@@ -9,8 +8,8 @@ import javax.swing.JMenu
 import javax.swing.JMenuBar
 import javax.swing.JMenuItem
 import javax.swing.UIManager
-
-
+import ru.zilya.networking.Client
+import ru.zilya.view.GameModel.Companion.gm
 
 
 class GameView(private val model: GameModel) : JFrame() {
@@ -25,6 +24,7 @@ class GameView(private val model: GameModel) : JFrame() {
     var panelPlayerPlayer: PanelFieldPlayer? = null
     var panelPlayerOpponent: PanelFieldOpponent? = null
     private var panelScore: ScoreField? = null
+    var client: Client? = null
 
     init {
         buildUI()
@@ -33,11 +33,10 @@ class GameView(private val model: GameModel) : JFrame() {
         model.register(panelScore!!)
         controller = GameController(this, model)
         attachController()
+        client = Client()
     }
 
-    /**
-     * обновляем данные на форме
-     */
+    /**обновляем данные на форме*/
     fun update() {
         panelPlayerPlayer?.repaint()
         panelPlayerOpponent?.repaint()
@@ -45,9 +44,8 @@ class GameView(private val model: GameModel) : JFrame() {
         println("view update")
     }
 
-    /**
-     * добавление слушателей формы и направляем их на контроллер
-     */
+    /**добавление слушателей формы и направляем их на контроллер*/
+
     fun attachController() {
         mntmAbout!!.addActionListener(controller)
         mntmNewGame!!.addActionListener(controller)
@@ -63,9 +61,8 @@ class GameView(private val model: GameModel) : JFrame() {
         })
     }
 
-    /**
-     * построение интерфейса пользователя
-     */
+    /**построение интерфейса пользователя*/
+
     private fun buildUI() {
         title = "Battleship"
         this.isResizable = false
@@ -111,15 +108,9 @@ class GameView(private val model: GameModel) : JFrame() {
 
 }
 
-
-fun main(args: Array<String>) {
-    try {
-        UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel")
-    } catch (e: Throwable) {
-        e.printStackTrace()
-    }
-
+fun main() {
     val model = GameModel(15, 15, 6)
-    val view = GameView(model)
+    //val view = GameView(model)
+    val view = GameView(gm)
     view.isVisible = true
 }

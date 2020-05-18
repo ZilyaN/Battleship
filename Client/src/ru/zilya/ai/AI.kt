@@ -1,6 +1,6 @@
 package ru.zilya.ai
 
-import ru.zilya.logic.*
+import ru.zilya.logic.Field
 import java.util.*
 
 class AI(field: Field) {

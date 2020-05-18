@@ -8,7 +8,8 @@ import java.awt.Graphics
 import javax.swing.JPanel
 
 
-class ScoreField(private val model: GameModel) : JPanel(), ISubscriber {
+class ScoreField(private val model: GameModel) : JPanel(),
+    ISubscriber {
     override fun paintComponent(g: Graphics) {
         super.paintComponent(g)
         val numShip = model.playerFieldOpponent.getMaxShip()
@@ -17,8 +18,11 @@ class ScoreField(private val model: GameModel) : JPanel(), ISubscriber {
             m[i] = 0
         }
         for (ship in model.playerFieldOpponent.getShips()!!) {
-            if (ship.getState() != Ship.SHIP_KILLED) {
+            if (ship.getState() != Ship.SHIP_KILLED ) {
                 m[ship.getSize()!! - 1]++
+                if(ship.getState() == Ship.SHIP_INJURED ){
+                    m[ship.getSize()!! - 1]--
+                }
             }
         }
 
@@ -30,15 +34,17 @@ class ScoreField(private val model: GameModel) : JPanel(), ISubscriber {
             }
             g.color = Color.black
             g.drawString(m[i].toString(), 156, i * 20 + 24)
+
         }
+
         val so = model.playerFieldOpponent.getNumLiveShips()
         val sp = model.playerFieldPlayer.getNumLiveShips()
         g.drawString("My ships: $sp", 15, 170)
         g.drawString("Op ships: $so", 15, 190)
         g.font = Font("NewRoman", Font.PLAIN, 30)
         g.color = Color.RED
-        if (sp == 0) g.drawString("YOU LOSE!", 15, 240)
-        if (so == 0) g.drawString("YOU WON!", 40, 240)
+        if (sp == 0) g.drawString("YOU LOSE!", 5, 240)
+        if (so == 0) g.drawString("YOU WON!", 20, 240)
     }
 
     override fun update() {

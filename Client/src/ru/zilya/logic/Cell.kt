@@ -1,6 +1,9 @@
 package ru.zilya.logic
 
 import Ship
+import com.sun.org.apache.xerces.internal.util.Status
+import ru.zilya.view.GameModel
+import java.io.ObjectInputFilter
 
 class Cell(val x: Int, val y: Int) {
     var xx = 0
@@ -18,6 +21,7 @@ class Cell(val x: Int, val y: Int) {
     }
 
     companion object {
+        //const val CELL_NONE = 0
         const val CELL_WATER = 1
         const val CELL_BORDER = 2
         const val CELL_WELL = 3
@@ -25,6 +29,7 @@ class Cell(val x: Int, val y: Int) {
         const val CELL_KILLED = 5
         const val CELL_MISSED = 6
     }
+
 
     fun setState(state: Int) { this.state = state }
 

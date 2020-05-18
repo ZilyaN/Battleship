@@ -1,13 +1,14 @@
 package ru.zilya.view
 
-import ru.zilya.logic.*
 import ru.zilya.logic.Cell
+import ru.zilya.logic.Field
 import java.awt.Color
 import java.awt.Graphics
 import javax.swing.JPanel
 
 
-abstract class PanelField(field: Field) : JPanel(), ISubscriber {
+abstract class PanelField(field: Field) : JPanel(),
+    ISubscriber {
     private val field: Field
     fun getField(): Field {
         return field
@@ -29,7 +30,6 @@ abstract class PanelField(field: Field) : JPanel(), ISubscriber {
         for (i in 0 until getField().getHeight() + 1) {
             g.drawLine(0, i * cellHeight, cellWidth * getField().getWidth(), i * cellHeight)
         }
-
 
         // рисуем элементы
         for (j in 0 until getField().getHeight()) {

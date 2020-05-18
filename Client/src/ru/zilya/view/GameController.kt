@@ -1,18 +1,17 @@
 package ru.zilya.view
 
+import GameView
 import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
 import java.awt.event.MouseEvent
 
 
-/**
- * Контроллер главного окна
- */
+/**Контроллер главного окна*/
+
 class GameController(var view: GameView, var model: GameModel) : ActionListener {
 
-    /**
-     * обработчик выбора меню
-     */
+    /** обработчик выбора меню*/
+
     override fun actionPerformed(e: ActionEvent) {
         val cmd = e.actionCommand
         if (cmd === "New game") {
@@ -32,17 +31,6 @@ class GameController(var view: GameView, var model: GameModel) : ActionListener 
         }
         if (cmd === "About") {
             println("About")
-            //			Dialog dia = new Dialog(view, "test");
-//			dia.setVisible(true);
-//			dia.addKeyListener(new KeyAdapter() {
-//				@Override
-//				public void keyPressed(KeyEvent arg0) {
-//					super.keyPressed(arg0);
-//					if (arg0.getKeyCode() == 27) {
-//						dia.setVisible(false);
-//					}
-//				}
-//			})
         }
         if (cmd === "Exit") {
             System.exit(0)

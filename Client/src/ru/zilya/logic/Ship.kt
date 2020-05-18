@@ -56,6 +56,7 @@ open class Ship(field: Field, val size: Int) {
             }
         }
 
+    /** Функция обхода корабля и его окружения**/
     private fun byPass(tp: PlaceShip): Boolean {
         var i: Int
         var m: Int
@@ -63,14 +64,14 @@ open class Ship(field: Field, val size: Int) {
         i = 0
         while (i < size) {
 
-            // êîðàáëü
+            // корабль
             m = y + i * dy
             n = x + i * dx
             if (!tp.setShip(m, n)) {
                 return false
             }
 
-            // ïëîùàäêà ñâåðõó è ñíèçó êîðàáëÿ
+            // площадка сверху и снизу корабля
             m = y + i * dy - dx
             n = x + i * dx - dy
             if (!tp.setBorder(m, n)) {
@@ -83,7 +84,7 @@ open class Ship(field: Field, val size: Int) {
             }
             i++
         }
-        // ïëîùàäêà ñëåâà è ñïðàâà êîðàáëÿ
+            //площадка слева и справа корабля
         i = -1
         while (i < 2) {
             m = y + i * dx - dy

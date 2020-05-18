@@ -1,6 +1,7 @@
 package ru.zilya.view
 
-import ru.zilya.logic.*
+import ru.zilya.logic.Cell
+import ru.zilya.logic.Field
 import java.awt.Color
 
 
